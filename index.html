@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOCTURNE – College Event Registration Portal</title>
+<meta name="description" content="Explore campus events, register, and manage your registrations. A local demonstration portal.">
+<meta name="theme-color" content="#09070F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23191127'/%3E%3Cpath d='M9 24V8l14 16V8' fill='none' stroke='%23C4A7FF' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#events">Skip to events</a>
+<header class="nav">
+  <a class="brand" href="#home" aria-label="Home"><span class="mono">N</span><span data-brand>NOCTURNE</span></a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+  <nav id="navLinks" aria-label="Main">
+    <a href="#home">Home</a><a href="#events">Explore Events</a><a href="#registrations">My Registrations</a>
+    <a class="btn small" href="#events">Register now</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <p class="eyebrow">Campus event season · November – December 2026</p>
+  <h1>Where campus life <em>comes alive.</em></h1>
+  <p class="lead">Browse symposiums, contests and festivals, claim your seat in minutes, and keep track of every registration in one place.</p>
+  <div class="actions"><a class="btn" href="#events">Explore events</a><a class="btn ghost" href="#registrations">View my registrations</a></div>
+</section>
+
+<section class="section" id="featured" aria-labelledby="featH">
+  <h2 id="featH">Featured this season</h2>
+  <div class="grid feat" id="featuredGrid"></div>
+</section>
+
+<section class="section" id="events" aria-labelledby="exH">
+  <h2 id="exH">Explore events</h2>
+  <form class="filters" id="filters" role="search" onsubmit="return false">
+    <label>Search by name<input type="search" id="fSearch" placeholder="e.g. hackathon"></label>
+    <label>Category<select id="fCat"><option value="">All categories</option></select></label>
+    <label>On or after<input type="date" id="fDate"></label>
+    <button type="button" class="btn ghost" id="fReset">Reset filters</button>
+  </form>
+  <p class="count" id="resultCount" aria-live="polite"></p>
+  <div class="grid" id="eventGrid"></div>
+  <div class="empty" id="eventEmpty" hidden><h3>No events match</h3><p>Try a different name, category or date, or reset the filters.</p></div>
+</section>
+
+<section class="section" id="registrations" aria-labelledby="myH">
+  <h2 id="myH">My registrations</h2>
+  <p class="note">Local demonstration only: registrations are saved in this browser's Local Storage. Enter the email you registered with to see them. This is not a real college account and nothing is shared across devices.</p>
+  <form class="filters lookup" id="lookup" novalidate>
+    <label>Registered email<input type="email" id="lookupEmail" autocomplete="email" placeholder="you@college.edu"></label>
+    <button class="btn" type="submit">Find registrations</button>
+    <p class="err" id="lookupErr" role="alert"></p>
+  </form>
+  <div id="myList"></div>
+</section>
+</main>
+
+<footer class="footer">
+  <div><a class="brand" href="#home"><span class="mono">N</span><span data-brand>NOCTURNE</span></a>
+  <p data-tagline>Where Campus Life Comes Alive.</p>
+  <p class="muted">A college event portal for exploring events, registering and managing seats. Runs entirely in your browser.</p></div>
+  <nav aria-label="Footer"><a href="#home">Home</a><a href="#events">Explore Events</a><a href="#registrations">My Registrations</a></nav>
+  <p class="muted copy">© 2026 <span data-brand>NOCTURNE</span>. Fictional events for a learning project.</p>
+</footer>
+
+<dialog id="detail" aria-labelledby="dTitle"><div id="detailBody"></div></dialog>
+<dialog id="confirm" aria-labelledby="cTitle">
+  <form method="dialog"><h3 id="cTitle">Cancel registration?</h3><p id="cMsg"></p>
+  <div class="actions"><button class="btn ghost" value="no">Keep registration</button><button class="btn danger" value="yes">Cancel registration</button></div></form>
+</dialog>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+</body>
+</html>
